@@ -4,7 +4,7 @@ import { TfiLocationPin } from "react-icons/tfi";
 const HeroSection = () => {
 	return (
 		<div>
-			<img src="/Images/desktop-wallpaper-portfolio.jpg" className="w-full" alt="" />
+			<img src="./Images/desktop-wallpaper-portfolio.jpg" className="w-full" alt="" />
 
 			<div>
 				<div className="py-16 px-7 flex flex-wrap justify-between bg-[#1e1e1e]">
