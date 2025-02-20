@@ -4,7 +4,7 @@ function App() {
 	return (
 		<>
 			<div className="flex justify-center">
-				<div className="max-w-5xl">
+				<div className="max-w-5xl w-5xl">
 					<HeroSection />
 					<Overview />
 					<WorkHistory />

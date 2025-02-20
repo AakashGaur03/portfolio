@@ -4,11 +4,11 @@ import { TfiLocationPin } from "react-icons/tfi";
 const HeroSection = () => {
 	return (
 		<div>
-			<img src="/Images/desktop-wallpaper-portfolio.jpg" alt="" />
+			<img src="/Images/desktop-wallpaper-portfolio.jpg" className="w-full" alt="" />
 
 			<div>
 				<div className="py-16 px-7 flex flex-wrap justify-between bg-[#1e1e1e]">
-					<div>
+					<div className="">
 						<p className="text-4xl">Aakash Gaur</p>
 						<div className="flex mt-3 flex-wrap gap-x-16">
 							<div className="flex items-center">
@@ -21,10 +21,10 @@ const HeroSection = () => {
 							</div>
 						</div>
 					</div>
-					<div className="content-end">
+					<div className="content-end pt-8">
 						<button
 							type="button"
-							className="bg-[#48e5c2] hover:bg-[#6deace] focus:outline-none focus:ring-4 focus:ring-green-30 rounded-full text-center me-2 mb-2 dark:bg-[#48e5c2] dark:hover:bg-[#6deace] dark:focus:ring-[#6deace] text-black px-16 text-xl font-bold leading-0.9 py-2"
+							className="bg-[#48e5c2] hover:bg-[#6deace] focus:outline-none focus:ring-4 focus:ring-green-30 rounded-full text-center me-2 mb-2 dark:bg-[#48e5c2] dark:hover:bg-[#6deace] dark:focus:ring-[#6deace] text-black px-12 text-xl font-bold leading-0.9 py-[10px]"
 						>
 							CONTACT ME
 						</button>
