@@ -6,4 +6,5 @@ import Skills from "./Skills";
 import Timeline from "./Timeline";
 import WorkHistory from "./WorkHistory";
 import Portfolio from "./Portfolio";
-export { Contact, Education, Overview, Skills, Timeline, WorkHistory, HeroSection, Portfolio };
+import Heads from "./Heads";
+export { Contact, Education, Overview, Skills, Timeline, WorkHistory, HeroSection, Portfolio, Heads };
