@@ -64,7 +64,7 @@ const WorkHistory = () => {
 								{job.role} - {job.company}
 								<p className="text-sm text-[#47e5c3]">{job.duration}</p>
 							</div>
-							<div className="ml-4">{expanded === index ? <FaChevronUp /> : <FaChevronDown />}</div>
+							<div className="ml-4 pe-4">{expanded === index ? <FaChevronUp /> : <FaChevronDown />}</div>
 						</div>
 						{expanded === index && (
 							<ul className="mt-2 text-sm text-gray-400 space-y-2">

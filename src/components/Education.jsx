@@ -48,7 +48,7 @@ const Education = () => {
 									<p className="text-sm text-[#47e5c3]">{edu.duration}</p>
 								</div>
 							</div>
-							<div>{expanded === index ? <FaChevronUp /> : <FaChevronDown />}</div>
+							<div className="pe-4">{expanded === index ? <FaChevronUp /> : <FaChevronDown />}</div>
 						</div>
 						{expanded === index && (
 							<ul className="mt-3 text-sm text-gray-400 space-y-1 pl-7">
