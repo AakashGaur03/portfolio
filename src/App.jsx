@@ -1,7 +1,16 @@
+// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Contact, Education, HeroSection, Overview, Skills, Timeline, WorkHistory, Portfolio } from "./components";
 function App() {
 	return (
 		<>
-			<div>Portfolio</div>{" "}
+			<HeroSection />
+			<Overview />
+			<WorkHistory />
+			<Education />
+			<Skills />
+			<Portfolio />
+			<Timeline />
+			<Contact />
 		</>
 	);
 }
