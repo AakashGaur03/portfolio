@@ -3,14 +3,18 @@ import { Contact, Education, HeroSection, Overview, Skills, Timeline, WorkHistor
 function App() {
 	return (
 		<>
-			<HeroSection />
-			<Overview />
-			<WorkHistory />
-			<Education />
-			<Skills />
-			<Portfolio />
-			<Timeline />
-			<Contact />
+			<div className="flex justify-center">
+				<div className="max-w-5xl">
+					<HeroSection />
+					<Overview />
+					<WorkHistory />
+					<Education />
+					<Skills />
+					<Portfolio />
+					<Timeline />
+					<Contact />
+				</div>
+			</div>
 		</>
 	);
 }
