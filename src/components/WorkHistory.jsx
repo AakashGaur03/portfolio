@@ -6,6 +6,7 @@ import Heads from "./Heads";
 const workHistory = [
 	{
 		company: "Letese",
+		companyIndex: "3",
 		role: "Full Stack Developer",
 		location: "Noida, India",
 		duration: "Aug 2024 – Present",
@@ -19,6 +20,7 @@ const workHistory = [
 	},
 	{
 		company: "Novative Solutions",
+		companyIndex: "2",
 		role: "Full Stack Developer",
 		location: "Noida, India",
 		duration: "Oct 2023 – Aug 2024",
@@ -33,6 +35,7 @@ const workHistory = [
 	},
 	{
 		company: "AppSquadz",
+		companyIndex: "1",
 		role: "Front End Developer Intern",
 		location: "Noida, India",
 		duration: "July 2023 – Sept 2023",
@@ -57,7 +60,7 @@ const WorkHistory = () => {
 			<Heads logo={<PiSuitcaseBold size={30} />} title="WORK HISTORY" />
 			<div className="mt-6 border-l-4 border-gray-300 pl-6">
 				{workHistory.map((job, index) => (
-					<div key={index} className="relative mb-8">
+					<div key={index} id={`work-${job.companyIndex}`} className="relative mb-8">
 						<div className="text-lg font-semibold flex items-center cursor-pointer" onClick={() => toggleExpand(index)}>
 							<div className="top-2 w-4 h-4 bg-gray-500 rounded-full mr-6"></div>
 							<div className="flex-1">

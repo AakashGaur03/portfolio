@@ -6,18 +6,21 @@ import Heads from "./Heads";
 const educationHistory = [
 	{
 		degree: "M.Tech",
+		eduIndex: "3",
 		institution: "SPGOI Sat Priya Group of Institutions (MDU)",
 		duration: "2024 – 2026",
 		status: "Pursuing",
 	},
 	{
 		degree: "B.Tech - Computer Science",
+		eduIndex: "2",
 		institution: "MERI College of Engineering and Technology (MDU)",
 		duration: "2020 – 2024",
 		gpa: "GPA: 8.6",
 	},
 	{
 		degree: "12th",
+		eduIndex: "1",
 		institution: "Columbia Foundation Sr. Sec. School (CBSE)",
 		duration: "2020",
 		percentage: "88%",
@@ -35,7 +38,7 @@ const Education = () => {
 			<Heads logo={<PiGraduationCapBold size={30} />} title="EDUCATION" />
 			<div className="mt-6 border-l-4 border-gray-300 pl-6">
 				{educationHistory.map((edu, index) => (
-					<div key={index} className="relative mb-6">
+					<div key={index} id={`education-${edu.eduIndex}`} className="relative mb-6">
 						<div
 							className="flex items-center justify-between cursor-pointer text-lg font-semibold"
 							onClick={() => toggleExpand(index)}
