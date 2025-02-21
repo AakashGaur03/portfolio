@@ -41,20 +41,20 @@ const Contact = () => {
 		try {
 			const formData = new FormData(e.target);
 
-			const response = await fetch("https://formsubmit.co/aakashportfolio03@gmail.com", {
+			const response = await fetch("https://formsubmit.co/ajax/aakashportfolio03@gmail.com", {
 				method: "POST",
 				body: formData,
 				headers: {
 					Accept: "application/json", // Prevents redirect response
 				},
+				redirect: "manual", // Prevents automatic redirection
 			});
-
-			const result = await response.json();
 
 			if (response.ok) {
 				setSuccess("Your message has been sent successfully!");
 				setFormData({ name: "", email: "", phone: "", description: "" });
 			} else {
+				const result = await response.json();
 				throw new Error(result.message || "Failed to send message");
 			}
 		} catch (error) {
