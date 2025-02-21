@@ -62,7 +62,7 @@ const WorkHistory = () => {
 				{workHistory.map((job, index) => (
 					<div key={index} id={`work-${job.companyIndex}`} className="relative mb-8">
 						<div className="text-lg font-semibold flex items-center cursor-pointer" onClick={() => toggleExpand(index)}>
-							<div className="top-2 w-4 h-4 bg-gray-500 rounded-full mr-6"></div>
+							<div className="top-2 w-3 h-3 bg-gray-500 rounded-full mr-6"></div>
 							<div className="flex-1">
 								{job.role} - {job.company}
 								<p className="text-sm text-[#47e5c3]">{job.duration}</p>
