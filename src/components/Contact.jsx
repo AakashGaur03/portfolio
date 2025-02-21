@@ -44,13 +44,18 @@ const Contact = () => {
 			const response = await fetch("https://formsubmit.co/aakashportfolio03@gmail.com", {
 				method: "POST",
 				body: formData,
+				headers: {
+					Accept: "application/json", // Prevents redirect response
+				},
 			});
+
+			const result = await response.json();
 
 			if (response.ok) {
 				setSuccess("Your message has been sent successfully!");
 				setFormData({ name: "", email: "", phone: "", description: "" });
 			} else {
-				throw new Error("Failed to send message");
+				throw new Error(result.message || "Failed to send message");
 			}
 		} catch (error) {
 			alert("Error sending email. Please try again!");
