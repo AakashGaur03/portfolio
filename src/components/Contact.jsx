@@ -65,7 +65,7 @@ const Contact = () => {
 	};
 
 	return (
-		<>
+		<div className="px-2">
 			<Heads logo={<HiOutlineMail size={30} />} title={"CONTACT"} />
 			<div className="max-w-lg mx-auto p-6 bg-[#1a1a1a] rounded-2xl shadow-xl my-6" id="contact-form">
 				<form onSubmit={handleSubmit} className="space-y-6 mt-4">
@@ -135,7 +135,7 @@ const Contact = () => {
 					{success && <p className="text-green-500 text-sm mt-2 text-center">{success}</p>}
 				</form>
 			</div>
-		</>
+		</div>
 	);
 };
 

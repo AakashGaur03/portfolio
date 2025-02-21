@@ -7,7 +7,7 @@ const PortfolioMedia = lazy(() => import("./PortfolioMedia"));
 
 const Portfolio = () => {
 	return (
-		<div>
+		<div className="px-2">
 			<Heads logo={<MdOutlinePeopleAlt size={30} />} title={"PORTFOLIO"} />
 			<Suspense fallback={<p>Loading portfolio...</p>}>
 				<PortfolioMedia />

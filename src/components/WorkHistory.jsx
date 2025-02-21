@@ -56,7 +56,7 @@ const WorkHistory = () => {
 	};
 
 	return (
-		<div>
+		<div className="px-2">
 			<Heads logo={<PiSuitcaseBold size={30} />} title="WORK HISTORY" />
 			<div className="mt-6 border-l-4 border-gray-300 pl-6">
 				{workHistory.map((job, index) => (

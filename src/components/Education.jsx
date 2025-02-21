@@ -34,7 +34,7 @@ const Education = () => {
 	};
 
 	return (
-		<div className="">
+		<div className="px-2">
 			<Heads logo={<PiGraduationCapBold size={30} />} title="EDUCATION" />
 			<div className="mt-6 border-l-4 border-gray-300 pl-6">
 				{educationHistory.map((edu, index) => (

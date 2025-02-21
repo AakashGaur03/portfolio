@@ -23,14 +23,14 @@ const Overview = () => {
 	];
 
 	return (
-		<>
+		<div className="px-2">
 			<Heads logo={<HiOutlineDocumentText size={30} />} title={"OVERVIEW"} />
 			<div className="flex lg:justify-between flex-wrap gap-6 justify-center">
 				{overviewData.map((item, index) => (
 					<OverviewCard key={index} number={item.number} text={item.text} />
 				))}
 			</div>
-		</>
+		</div>
 	);
 };
 

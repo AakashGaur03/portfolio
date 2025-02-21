@@ -31,7 +31,7 @@ const skillsData = [
 
 const Skills = () => {
 	return (
-		<div className="px-4">
+		<div className="px-2">
 			<Heads logo={<BsLightning size={30} />} title={"SKILLS"} />
 			<div className="mt-4 bg-[#1a1a1a] p-5 rounded-lg shadow-lg">
 				<ul className="space-y-3 text-gray-300">

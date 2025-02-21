@@ -54,7 +54,7 @@ const Timeline = () => {
 	const [hoverIndex, setHoverIndex] = useState(null);
 
 	return (
-		<div className="">
+		<div className="px-2">
 			<Heads logo={<PiSuitcaseBold size={30} />} title={"TIMELINE"} />
 			<div className="relative mt-6 flex flex-col items-center">
 				<div className="absolute w-1 bg-gray-700 h-full md:left-1/2 left-2 transform -translate-x-1/2"></div>
