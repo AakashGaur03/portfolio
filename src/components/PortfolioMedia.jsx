@@ -2,7 +2,8 @@ import { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 const mediaItems = [
 	{ project: "ReservationTeams", src: "./Portfolio/ReservationTeams1.png" },
 	{ project: "ReservationTeams", src: "./Portfolio/ReservationTeams2.png" },
@@ -114,7 +115,7 @@ const PortfolioMedia = () => {
 							</button>
 
 							<div className="flex justify-center items-center w-full max-h-[90vh] min-h-[70vh]">
-								<img
+								<LazyLoadImage
 									src={selectedProject.images[currentIndex]}
 									alt="Preview"
 									className="max-w-full max-h-[90vh] object-contain mx-auto"
