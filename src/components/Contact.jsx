@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { HiOutlineMail } from "react-icons/hi";
-import axios from "axios";
 import Heads from "./Heads";
 
 const Contact = () => {
@@ -21,28 +20,40 @@ const Contact = () => {
 		setErrors({ ...errors, [e.target.name]: "" });
 	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		setSuccess("");
-		setLoading(true);
-
+	const validateForm = () => {
 		let newErrors = {};
 		if (!formData.name.trim()) newErrors.name = "Name is required";
 		if (!formData.email.trim()) newErrors.email = "Email is required";
 		else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Invalid email format";
 
-		if (Object.keys(newErrors).length) {
-			setErrors(newErrors);
-			setLoading(false);
-			return;
-		}
+		setErrors(newErrors);
+		return Object.keys(newErrors).length === 0;
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setSuccess("");
+		if (!validateForm()) return;
+
+		setLoading(true);
 
 		try {
-			const res = await axios.post("http://localhost:8080/send-email", formData);
-			setSuccess(res.data.message);
-			setFormData({ name: "", email: "", phone: "", description: "" });
+			const form = e.target;
+			const formData = new FormData(form);
+
+			const response = await fetch("https://formsubmit.co/aakashportfolio03@gmail.com", {
+				method: "POST",
+				body: formData,
+			});
+
+			if (response.ok) {
+				setSuccess("Your message has been sent successfully!");
+				setFormData({ name: "", email: "", phone: "", description: "" });
+			} else {
+				throw new Error("Failed to send message");
+			}
 		} catch (error) {
-			alert("Error sending email!");
+			alert("Error sending email. Please try again!");
 		} finally {
 			setLoading(false);
 		}
@@ -53,6 +64,9 @@ const Contact = () => {
 			<Heads logo={<HiOutlineMail size={30} />} title={"CONTACT"} />
 			<div className="max-w-lg mx-auto p-6 bg-[#1a1a1a] rounded-2xl shadow-xl mt-6">
 				<form onSubmit={handleSubmit} className="space-y-6 mt-4">
+					<input type="hidden" name="_captcha" value="false" />
+					<input type="hidden" name="_next" value="https://yourwebsite.com/thank-you" />
+
 					<div>
 						<label className="block text-gray-300 font-medium mb-1">Name*</label>
 						<input
@@ -62,6 +76,7 @@ const Contact = () => {
 							onChange={handleChange}
 							className="w-full p-3 border rounded-lg bg-gray-800 text-white"
 							placeholder="Enter your name"
+							required
 						/>
 						{errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
 					</div>
@@ -75,6 +90,7 @@ const Contact = () => {
 							onChange={handleChange}
 							className="w-full p-3 border rounded-lg bg-gray-800 text-white"
 							placeholder="Enter your email"
+							required
 						/>
 						{errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
 					</div>
@@ -99,12 +115,14 @@ const Contact = () => {
 							onChange={handleChange}
 							className="w-full p-3 border rounded-lg bg-gray-800 text-white h-28 resize-none"
 							placeholder="Enter your message..."
+							required
 						></textarea>
 					</div>
 
 					<button
 						type="submit"
 						className="w-full bg-[#47e5c3] text-black font-semibold py-3 rounded-lg hover:bg-[#3ac3a5] transition duration-300"
+						disabled={loading}
 					>
 						{loading ? "Sending..." : "Submit"}
 					</button>
