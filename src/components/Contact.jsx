@@ -67,7 +67,7 @@ const Contact = () => {
 	return (
 		<>
 			<Heads logo={<HiOutlineMail size={30} />} title={"CONTACT"} />
-			<div className="max-w-lg mx-auto p-6 bg-[#1a1a1a] rounded-2xl shadow-xl my-6">
+			<div className="max-w-lg mx-auto p-6 bg-[#1a1a1a] rounded-2xl shadow-xl my-6" id="contact-form">
 				<form onSubmit={handleSubmit} className="space-y-6 mt-4">
 					<input type="hidden" name="_captcha" value="false" />
 					<input type="hidden" name="_next" value="https://yourwebsite.com/thank-you" />

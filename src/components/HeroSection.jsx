@@ -22,12 +22,13 @@ const HeroSection = () => {
 						</div>
 					</div>
 					<div className="content-end pt-8">
-						<button
+						<a
+							href="#contact-form"
 							type="button"
 							className="bg-[#48e5c2] hover:bg-[#6deace] focus:outline-none focus:ring-4 focus:ring-green-30 rounded-full text-center me-2 mb-2 dark:bg-[#48e5c2] dark:hover:bg-[#6deace] dark:focus:ring-[#6deace] text-black px-12 text-xl font-bold leading-0.9 py-[10px]"
 						>
 							CONTACT ME
-						</button>
+						</a>
 					</div>
 				</div>
 			</div>
