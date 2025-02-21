@@ -33,13 +33,13 @@ const Contact = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setSuccess("");
+
 		if (!validateForm()) return;
 
 		setLoading(true);
 
 		try {
-			const form = e.target;
-			const formData = new FormData(form);
+			const formData = new FormData(e.target);
 
 			const response = await fetch("https://formsubmit.co/aakashportfolio03@gmail.com", {
 				method: "POST",
