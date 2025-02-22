@@ -1,49 +1,61 @@
 import { useState } from "react";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 const mediaItems = [
-	{ project: "ReservationTeams", src: "./Portfolio/ReservationTeams1.png" },
-	{ project: "ReservationTeams", src: "./Portfolio/ReservationTeams2.png" },
-	{ project: "ReservationTeams", src: "./Portfolio/ReservationTeams3.png" },
-	{ project: "ReservationTeams", src: "./Portfolio/ReservationTeams4.png" },
-	{ project: "ReservationTeams", src: "./Portfolio/ReservationTeams5.png" },
-	{ project: "ReservationTeams", src: "./Portfolio/ReservationTeams6.png" },
-	{ project: "ReservationTeams", src: "./Portfolio/ReservationTeams7.png" },
-	{ project: "Flynowithus", src: "./Portfolio/Flynowithus1.png" },
-	{ project: "Flynowithus", src: "./Portfolio/Flynowithus2.png" },
-	{ project: "Flynowithus", src: "./Portfolio/Flynowithus3.png" },
-	{ project: "Flynowithus", src: "./Portfolio/Flynowithus4.png" },
-	{ project: "StockApp", src: "./Portfolio/StockApp1.jpeg" },
-	{ project: "StockApp", src: "./Portfolio/StockApp2.jpeg" },
-	{ project: "StockApp", src: "./Portfolio/StockApp3.jpeg" },
-	{ project: "StockApp", src: "./Portfolio/StockApp4.jpeg" },
-	{ project: "LandingPage", src: "./Portfolio/LandingPage1.png" },
-	{ project: "LandingPage", src: "./Portfolio/LandingPage2.png" },
-	{ project: "LandingPage", src: "./Portfolio/LandingPage3.png" },
-	{ project: "LandingPage", src: "./Portfolio/LandingPage4.png" },
-	{ project: "LandingPage", src: "./Portfolio/LandingPage5.png" },
+	{ type: "Freelance", project: "ReservationTeams", src: "./Portfolio/ReservationTeams1.png" },
+	{ type: "Freelance", project: "ReservationTeams", src: "./Portfolio/ReservationTeams2.png" },
+	{ type: "Freelance", project: "ReservationTeams", src: "./Portfolio/ReservationTeams3.png" },
+	{ type: "Freelance", project: "ReservationTeams", src: "./Portfolio/ReservationTeams4.png" },
+	{ type: "Freelance", project: "ReservationTeams", src: "./Portfolio/ReservationTeams5.png" },
+	{ type: "Freelance", project: "ReservationTeams", src: "./Portfolio/ReservationTeams6.png" },
+	{ type: "Freelance", project: "ReservationTeams", src: "./Portfolio/ReservationTeams7.png" },
+	{ type: "Freelance", project: "Flynowithus", src: "./Portfolio/Flynowithus1.png" },
+	{ type: "Freelance", project: "Flynowithus", src: "./Portfolio/Flynowithus2.png" },
+	{ type: "Freelance", project: "Flynowithus", src: "./Portfolio/Flynowithus3.png" },
+	{ type: "Freelance", project: "Flynowithus", src: "./Portfolio/Flynowithus4.png" },
+	{ type: "Freelance", project: "StockApp", src: "./Portfolio/StockApp1.jpeg" },
+	{ type: "Freelance", project: "StockApp", src: "./Portfolio/StockApp2.jpeg" },
+	{ type: "Freelance", project: "StockApp", src: "./Portfolio/StockApp3.jpeg" },
+	{ type: "Freelance", project: "StockApp", src: "./Portfolio/StockApp4.jpeg" },
+	{ type: "Freelance", project: "LandingPage", src: "./Portfolio/LandingPage1.png" },
+	{ type: "Freelance", project: "LandingPage", src: "./Portfolio/LandingPage2.png" },
+	{ type: "Freelance", project: "LandingPage", src: "./Portfolio/LandingPage3.png" },
+	{ type: "Freelance", project: "LandingPage", src: "./Portfolio/LandingPage4.png" },
+	{ type: "Freelance", project: "LandingPage", src: "./Portfolio/LandingPage5.png" },
+	{ type: "Personal", project: "MultiverseHub", src: "./Portfolio/Multiversehub1.png" },
+	{ type: "Personal", project: "MultiverseHub", src: "./Portfolio/Multiversehub2.png" },
+	{ type: "Personal", project: "MultiverseHub", src: "./Portfolio/Multiversehub3.png" },
+	{ type: "Personal", project: "MultiverseHub", src: "./Portfolio/Multiversehub4.png" },
+	{ type: "Personal", project: "MultiverseHub", src: "./Portfolio/Multiversehub5.png" },
+	{ type: "Personal", project: "MultiverseHub", src: "./Portfolio/Multiversehub6.png" },
+	{ type: "Personal", project: "MultiverseHub", src: "./Portfolio/Multiversehub7.png" },
+	{ type: "Personal", project: "MultiverseHub", src: "./Portfolio/Multiversehub8.png" },
+	{ type: "Personal", project: "ZsyncPro", src: "./Portfolio/ZsyncPro1.png" },
+	{ type: "Personal", project: "ZsyncPro", src: "./Portfolio/ZsyncPro2.png" },
+	{ type: "Personal", project: "ZsyncPro", src: "./Portfolio/ZsyncPro3.png" },
+	{ type: "Personal", project: "ZsyncPro", src: "./Portfolio/ZsyncPro4.png" },
+	{ type: "Personal", project: "ZsyncPro", src: "./Portfolio/ZsyncPro5.png" },
+	{ type: "Personal", project: "ZsyncPro", src: "./Portfolio/ZsyncPro6.png" },
 ];
 
+// Group projects by type and name
+const groupProjectsByType = (items) => {
+	const grouped = {};
+	items.forEach((item) => {
+		if (!grouped[item.type]) grouped[item.type] = {};
+		if (!grouped[item.type][item.project]) grouped[item.type][item.project] = [];
+		grouped[item.type][item.project].push(item.src);
+	});
+	return grouped;
+};
+
 const PortfolioMedia = () => {
-	const [showAll, setShowAll] = useState(false);
 	const [selectedProject, setSelectedProject] = useState(null);
 	const [currentIndex, setCurrentIndex] = useState(0);
 
-	const projectGroups = mediaItems.reduce((acc, item) => {
-		acc[item.project] = acc[item.project] || [];
-		acc[item.project].push(item.src);
-		return acc;
-	}, {});
-
-	const groupedProjects = Object.keys(projectGroups).map((project) => ({
-		name: project,
-		images: projectGroups[project],
-	}));
-
-	const visibleProjects = showAll ? groupedProjects : groupedProjects.slice(0, 6);
+	const groupedProjects = groupProjectsByType(mediaItems);
 
 	const openProject = (project) => {
 		setSelectedProject(project);
@@ -53,48 +65,33 @@ const PortfolioMedia = () => {
 	const prevImage = () => setCurrentIndex((prev) => (prev > 0 ? prev - 1 : selectedProject.images.length - 1));
 	const nextImage = () => setCurrentIndex((prev) => (prev < selectedProject.images.length - 1 ? prev + 1 : 0));
 
-	const closeModal = () => {
-		setSelectedProject(null);
-	};
+	const closeModal = () => setSelectedProject(null);
 
 	return (
 		<div className="p-4">
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-				{visibleProjects.map((project, index) => (
-					<div key={index} className="relative flex flex-col items-center">
-						<img
-							src={project.images[0]}
-							alt={project.name}
-							className="max-w-full max-h-60 object-contain rounded-lg shadow-md cursor-pointer"
-							onClick={() => openProject(project)}
-						/>
-						{project.images.length > 1 && (
-							<span className="absolute top-2 right-2 bg-gray-800 text-white text-xs px-2 py-1 rounded-full">
-								{project.images.length}+
-							</span>
-						)}
-						<p className="mt-2 font-semibold text-white">{project.name}</p>
+			{Object.entries(groupedProjects).map(([type, projects]) => (
+				<div key={type} className="mb-6">
+					<h2 className="text-xl font-semibold text-white mb-3">{type} Projects</h2>
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+						{Object.entries(projects).map(([name, images], index) => (
+							<div key={index} className="relative flex flex-col items-center">
+								<img
+									src={images[0]}
+									alt={name}
+									className="max-w-full max-h-60 object-contain rounded-lg shadow-md cursor-pointer"
+									onClick={() => openProject({ name, images })}
+								/>
+								{images.length > 1 && (
+									<span className="absolute top-2 right-2 bg-gray-800 text-white text-xs px-2 py-1 rounded-full">
+										{images.length}+
+									</span>
+								)}
+								<p className="mt-2 font-semibold text-white">{name}</p>
+							</div>
+						))}
 					</div>
-				))}
-			</div>
-
-			{groupedProjects.length > 9 && (
-				<div className="flex justify-center mt-4">
-					{showAll ? (
-						<FiChevronUp
-							size={30}
-							className="cursor-pointer text-blue-500 hover:text-blue-700"
-							onClick={() => setShowAll(false)}
-						/>
-					) : (
-						<FiChevronDown
-							size={30}
-							className="cursor-pointer text-blue-500 hover:text-blue-700"
-							onClick={() => setShowAll(true)}
-						/>
-					)}
 				</div>
-			)}
+			))}
 
 			{selectedProject && (
 				<div
@@ -103,7 +100,7 @@ const PortfolioMedia = () => {
 				>
 					<div
 						className="relative bg-gray-900 p-4 min-w-[70vw] rounded-lg shadow-lg max-w-4xl w-full flex flex-col items-center"
-						onClick={(e) => e.stopPropagation()} // Prevent modal close on content click
+						onClick={(e) => e.stopPropagation()}
 					>
 						<button className="absolute z-10 top-2 right-2 text-gray-400 hover:text-gray-200" onClick={closeModal}>
 							<IoMdClose size={24} />
