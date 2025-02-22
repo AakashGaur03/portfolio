@@ -22,9 +22,29 @@ const Contact = () => {
 
 	const validateForm = () => {
 		let newErrors = {};
-		if (!formData.name.trim()) newErrors.name = "Name is required";
-		if (!formData.email.trim()) newErrors.email = "Email is required";
-		else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Invalid email format";
+
+		// Trim values to prevent leading/trailing spaces
+		const trimmedName = formData.name.trim();
+		const trimmedEmail = formData.email.trim();
+		const trimmedPhone = formData.phone.trim();
+		const trimmedDescription = formData.description.trim();
+
+		if (!trimmedName) newErrors.name = "Name is required";
+
+		// Improved Email Validation
+		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+		const disposableDomains = ["yopmail.com", "tempmail.com", "mailinator.com", "guerrillamail.com"];
+
+		if (!trimmedEmail) {
+			newErrors.email = "Email is required";
+		} else if (!emailRegex.test(trimmedEmail)) {
+			newErrors.email = "Invalid email format";
+		} else {
+			const emailDomain = trimmedEmail.split("@")[1];
+			if (disposableDomains.includes(emailDomain)) {
+				newErrors.email = "Disposable email addresses are not allowed";
+			}
+		}
 
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
