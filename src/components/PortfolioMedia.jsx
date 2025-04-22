@@ -4,6 +4,13 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 const mediaItems = [
+  { type: "Freelance", project: "Shelfront", src: "./Portfolio/shelfront1.png" },
+  { type: "Freelance", project: "Shelfront", src: "./Portfolio/shelfront2.png" },
+  { type: "Freelance", project: "Shelfront", src: "./Portfolio/shelfront3.png" },
+  { type: "Freelance", project: "Shelfront", src: "./Portfolio/shelfront4.png" },
+  { type: "Freelance", project: "Shelfront", src: "./Portfolio/shelfront5.png" },
+  { type: "Freelance", project: "Shelfront", src: "./Portfolio/shelfront6.png" },
+  { type: "Freelance", project: "Shelfront", src: "./Portfolio/shelfront7.png" },
   { type: "Freelance", project: "ASC", src: "./Portfolio/ASC1.png" },
   { type: "Freelance", project: "ASC", src: "./Portfolio/ASC2.png" },
   { type: "Freelance", project: "ASC", src: "./Portfolio/ASC3.png" },
@@ -109,12 +116,15 @@ const PortfolioMedia = () => {
             className="relative bg-gray-900 p-4 min-w-[70vw] rounded-lg shadow-lg max-w-4xl w-full flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="absolute z-10 top-2 right-2 text-gray-400 hover:text-gray-200" onClick={closeModal}>
+            <button
+              className="absolute z-10 top-2 right-2 text-gray-400 hover:text-gray-200 cursor-pointer"
+              onClick={closeModal}
+            >
               <IoMdClose size={24} />
             </button>
 
             <div className="relative flex items-center justify-between w-full">
-              <button className="text-gray-400 p-4 hover:text-white" onClick={prevImage}>
+              <button className="text-gray-400 p-4 hover:text-white cursor-pointer" onClick={prevImage}>
                 <FaArrowLeft size={24} />
               </button>
 
@@ -126,7 +136,7 @@ const PortfolioMedia = () => {
                 />
               </div>
 
-              <button className="text-gray-400 p-4 hover:text-white" onClick={nextImage}>
+              <button className="text-gray-400 p-4 hover:text-white cursor-pointer" onClick={nextImage}>
                 <FaArrowRight size={24} />
               </button>
             </div>
