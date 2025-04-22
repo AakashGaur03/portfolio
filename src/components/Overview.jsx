@@ -19,7 +19,7 @@ const OverviewCard = ({ number, text }) => {
 const Overview = () => {
   const overviewData = [
     { number: 2, text: "YEARS OF PROFESSIONAL EXPERIENCE" },
-    { number: 5, text: "FREELANCE PROJECTS COMPLETED" },
+    { number: 6, text: "FREELANCE PROJECTS COMPLETED" },
   ];
 
   return (
