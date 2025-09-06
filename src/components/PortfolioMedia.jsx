@@ -4,6 +4,17 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 const mediaItems = [
+	{ type: "Freelance", project: "Zenny", src: "./Portfolio/Zenny/Zenny1.png", link: "https://zenny.in/" },
+	{ type: "Freelance", project: "Zenny", src: "./Portfolio/Zenny/Zenny2.png" },
+	{ type: "Freelance", project: "Zenny", src: "./Portfolio/Zenny/Zenny3.png" },
+	{ type: "Freelance", project: "Zenny", src: "./Portfolio/Zenny/Zenny4.png" },
+	{ type: "Freelance", project: "Zenny", src: "./Portfolio/Zenny/Zenny5.png" },
+	{ type: "Freelance", project: "Zenny", src: "./Portfolio/Zenny/Zenny6.png" },
+	{ type: "Freelance", project: "Zenny", src: "./Portfolio/Zenny/Zenny7.png" },
+	{ type: "Freelance", project: "Zenny", src: "./Portfolio/Zenny/Zenny8.png" },
+	{ type: "Freelance", project: "Zenny", src: "./Portfolio/Zenny/Zenny9.png" },
+	{ type: "Freelance", project: "Zenny", src: "./Portfolio/Zenny/Zenny10.png" },
+	{ type: "Freelance", project: "Zenny", src: "./Portfolio/Zenny/Zenny11.png" },
 	{ type: "Freelance", project: "Shelfront", src: "./Portfolio/shelfront1.png", link: "https://shelfront.com/" },
 	{ type: "Freelance", project: "Shelfront", src: "./Portfolio/shelfront2.png" },
 	{ type: "Freelance", project: "Shelfront", src: "./Portfolio/shelfront3.png" },
