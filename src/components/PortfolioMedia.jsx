@@ -36,8 +36,15 @@ const PortfolioMedia = () => {
 		setLoading(true);
 	};
 
-	const prevImage = () => setCurrentIndex((prev) => (prev > 0 ? prev - 1 : selectedProject.images.length - 1));
-	const nextImage = () => setCurrentIndex((prev) => (prev < selectedProject.images.length - 1 ? prev + 1 : 0));
+	const prevImage = () => {
+		setLoading(true); // show skeleton immediately
+		setCurrentIndex((prev) => (prev > 0 ? prev - 1 : selectedProject.images.length - 1));
+	};
+
+	const nextImage = () => {
+		setLoading(true); // show skeleton immediately
+		setCurrentIndex((prev) => (prev < selectedProject.images.length - 1 ? prev + 1 : 0));
+	};
 
 	const closeModal = () => setSelectedProject(null);
 
@@ -147,20 +154,19 @@ const PortfolioMedia = () => {
 								<FaArrowLeft size={24} />
 							</button>
 
-							<div className="flex justify-center items-center w-full max-h-[90vh] min-h-[70vh]">
+							<div className="flex justify-center items-center w-full max-h-[90vh] min-h-[70vh] relative">
 								{loading && (
-									<div className="w-full h-full flex items-center justify-center bg-gray-800 rounded-lg animate-pulse">
+									<div className="absolute inset-0 flex items-center justify-center bg-gray-800 rounded-lg animate-pulse z-10">
 										<p className="text-gray-400">Loading...</p>
 									</div>
 								)}
-								<div className="flex justify-center items-center w-full max-h-[90vh] min-h-[70vh]">
-									<LazyImage
-										src={selectedProject.images[currentIndex]}
-										alt="Preview"
-										className="max-w-full max-h-[90vh] object-contain mx-auto"
-										onLoad={() => setLoading(false)} // 🔥 stop showing Loading... when ready
-									/>
-								</div>
+
+								<LazyImage
+									src={selectedProject.images[currentIndex]}
+									alt="Preview"
+									className="max-w-full max-h-[90vh] object-contain mx-auto"
+									onLoad={() => setLoading(false)}
+								/>
 							</div>
 
 							<button className="text-gray-400 p-4 hover:text-white cursor-pointer" onClick={nextImage}>
