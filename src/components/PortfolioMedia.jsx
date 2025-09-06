@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { IoMdClose } from "react-icons/io";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import { mediaItems } from "../data/mediaItems";
+import LazyImage from "./LazyImage";
 
 // Group projects by type and name
 const groupProjectsByType = (items) => {
@@ -154,13 +153,14 @@ const PortfolioMedia = () => {
 										<p className="text-gray-400">Loading...</p>
 									</div>
 								)}
-								<LazyLoadImage
-									src={selectedProject.images[currentIndex]}
-									alt="Preview"
-									afterLoad={() => setLoading(false)}
-									beforeLoad={() => setLoading(true)}
-									className="max-w-full max-h-[90vh] object-contain mx-auto"
-								/>
+								<div className="flex justify-center items-center w-full max-h-[90vh] min-h-[70vh]">
+									<LazyImage
+										src={selectedProject.images[currentIndex]}
+										alt="Preview"
+										className="max-w-full max-h-[90vh] object-contain mx-auto"
+										onLoad={() => setLoading(false)} // 🔥 stop showing Loading... when ready
+									/>
+								</div>
 							</div>
 
 							<button className="text-gray-400 p-4 hover:text-white cursor-pointer" onClick={nextImage}>
