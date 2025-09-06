@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { IoMdClose } from "react-icons/io";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -13,7 +13,6 @@ const groupProjectsByType = (items) => {
 		if (!grouped[type][project]) grouped[type][project] = { images: [], link: null };
 		grouped[type][project].images.push(src);
 
-		// Set the link if it's not already set
 		if (link && !grouped[type][project].link) {
 			grouped[type][project].link = link;
 		}
@@ -24,18 +23,63 @@ const groupProjectsByType = (items) => {
 const PortfolioMedia = () => {
 	const [selectedProject, setSelectedProject] = useState(null);
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const [loading, setLoading] = useState(true);
+
+	// For drag/swipe
+	const startXRef = useRef(null);
+	const isDraggingRef = useRef(false);
 
 	const groupedProjects = groupProjectsByType(mediaItems);
 
 	const openProject = (project) => {
 		setSelectedProject(project);
 		setCurrentIndex(0);
+		setLoading(true);
 	};
 
 	const prevImage = () => setCurrentIndex((prev) => (prev > 0 ? prev - 1 : selectedProject.images.length - 1));
 	const nextImage = () => setCurrentIndex((prev) => (prev < selectedProject.images.length - 1 ? prev + 1 : 0));
 
 	const closeModal = () => setSelectedProject(null);
+
+	// Keyboard support
+	useEffect(() => {
+		const handleKey = (e) => {
+			if (!selectedProject) return;
+			if (e.key === "ArrowLeft") prevImage();
+			if (e.key === "ArrowRight") nextImage();
+			if (e.key === "Escape") closeModal();
+		};
+		window.addEventListener("keydown", handleKey);
+		return () => window.removeEventListener("keydown", handleKey);
+	}, [selectedProject]);
+
+	// Drag / Swipe handlers
+	const handleStart = (e) => {
+		isDraggingRef.current = true;
+		startXRef.current = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
+	};
+
+	const handleMove = (e) => {
+		if (!isDraggingRef.current || startXRef.current === null) return;
+		const currentX = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
+		const diff = startXRef.current - currentX;
+
+		if (Math.abs(diff) > 50) {
+			if (diff > 0) {
+				nextImage();
+			} else {
+				prevImage();
+			}
+			isDraggingRef.current = false;
+			startXRef.current = null;
+		}
+	};
+
+	const handleEnd = () => {
+		isDraggingRef.current = false;
+		startXRef.current = null;
+	};
 
 	return (
 		<div className="p-4">
@@ -82,6 +126,7 @@ const PortfolioMedia = () => {
 						className="relative bg-gray-900 p-4 min-w-[70vw] rounded-lg shadow-lg max-w-4xl w-full flex flex-col items-center"
 						onClick={(e) => e.stopPropagation()}
 					>
+						{/* Close Button */}
 						<button
 							className="absolute z-10 top-2 right-2 text-gray-400 hover:text-gray-200 cursor-pointer"
 							onClick={closeModal}
@@ -89,15 +134,31 @@ const PortfolioMedia = () => {
 							<IoMdClose size={24} />
 						</button>
 
-						<div className="relative flex items-center justify-between w-full">
+						{/* Image with drag/swipe */}
+						<div
+							className="relative flex items-center justify-between w-full"
+							onMouseDown={handleStart}
+							onMouseMove={handleMove}
+							onMouseUp={handleEnd}
+							onTouchStart={handleStart}
+							onTouchMove={handleMove}
+							onTouchEnd={handleEnd}
+						>
 							<button className="text-gray-400 p-4 hover:text-white cursor-pointer" onClick={prevImage}>
 								<FaArrowLeft size={24} />
 							</button>
 
 							<div className="flex justify-center items-center w-full max-h-[90vh] min-h-[70vh]">
+								{loading && (
+									<div className="w-full h-full flex items-center justify-center bg-gray-800 rounded-lg animate-pulse">
+										<p className="text-gray-400">Loading...</p>
+									</div>
+								)}
 								<LazyLoadImage
 									src={selectedProject.images[currentIndex]}
 									alt="Preview"
+									afterLoad={() => setLoading(false)}
+									beforeLoad={() => setLoading(true)}
 									className="max-w-full max-h-[90vh] object-contain mx-auto"
 								/>
 							</div>
@@ -107,6 +168,7 @@ const PortfolioMedia = () => {
 							</button>
 						</div>
 
+						{/* Footer info */}
 						<p className="text-gray-400 mt-2">
 							{currentIndex + 1} / {selectedProject.images.length}
 						</p>
