@@ -5,11 +5,41 @@ import Heads from "./Heads";
 
 const workHistory = [
 	{
+		company: "MojoCX",
+		companyIndex: "5",
+		role: "Full Stack Developer",
+		location: "Remote",
+		duration: "Nov 2025 – Present",
+		description: [
+			"Developing and maintaining scalable web applications using modern frontend and backend technologies.",
+			"Implementing responsive UI components to ensure seamless usability across all devices and platforms.",
+			"Collaborating closely with the engineering team to design optimized and well-structured database schemas.",
+			"Integrating third-party APIs and external services to enhance feature capabilities and system performance.",
+			"Participating in code reviews and contributing to code quality improvements through best practices and constructive feedback.",
+			"Identifying and resolving technical issues to maintain high application stability and performance.",
+		],
+	},
+	{
+		company: "Appalus",
+		companyIndex: "4",
+		role: "Software Developer",
+		location: "Remote",
+		duration: "Aug 2025 – Nov 2025",
+		description: [
+			"Collaborated directly with an international client, managing evolving requirements and ensuring consistent progress updates.",
+			"Owned the complete development lifecycle by single-handedly driving backend and frontend integration for the product.",
+			"Designed and implemented the entire backend architecture using Express.js, focusing on scalability, maintainability, and security.",
+			"Led the final integration phase between backend and frontend, ensuring smooth functionality and readiness for deployment.",
+			"Successfully delivered the project with end-to-end responsibility, including planning, development, testing, and deployment coordination.",
+		],
+	},
+
+	{
 		company: "Letese",
 		companyIndex: "3",
 		role: "Full Stack Developer",
 		location: "Noida, India",
-		duration: "Aug 2024 – Present",
+		duration: "Aug 2024 – Aug 2025",
 		description: [
 			"Single-handedly working on the backend development using NestJS, collaborating closely with the team lead for guidance and project alignment.",
 			"Successfully completed authentication modules for different user types, CMS module, and Lead module, laying the foundation for a robust platform.",
