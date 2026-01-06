@@ -49,11 +49,7 @@ export const mediaItems = [
 	{ type: "Freelance", project: "StockApp", src: "./Portfolio/StockApp2.jpeg" },
 	{ type: "Freelance", project: "StockApp", src: "./Portfolio/StockApp3.jpeg" },
 	{ type: "Freelance", project: "StockApp", src: "./Portfolio/StockApp4.jpeg" },
-	{ type: "Freelance", project: "LandingPage", src: "./Portfolio/LandingPage1.png" },
-	{ type: "Freelance", project: "LandingPage", src: "./Portfolio/LandingPage2.png" },
-	{ type: "Freelance", project: "LandingPage", src: "./Portfolio/LandingPage3.png" },
-	{ type: "Freelance", project: "LandingPage", src: "./Portfolio/LandingPage4.png" },
-	{ type: "Freelance", project: "LandingPage", src: "./Portfolio/LandingPage5.png" },
+
 	{
 		type: "Personal",
 		project: "MultiverseHub",
@@ -78,4 +74,29 @@ export const mediaItems = [
 	{ type: "Personal", project: "ZsyncPro", src: "./Portfolio/ZsyncPro4.png" },
 	{ type: "Personal", project: "ZsyncPro", src: "./Portfolio/ZsyncPro5.png" },
 	{ type: "Personal", project: "ZsyncPro", src: "./Portfolio/ZsyncPro6.png" },
+
+	{
+		type: "Personal",
+		project: "LandingPage",
+		src: "./Portfolio/LandingPage1.png",
+		link: "https://aakashgaur03.github.io/Landing-Page/",
+	},
+	{ type: "Personal", project: "LandingPage", src: "./Portfolio/LandingPage2.png" },
+	{ type: "Personal", project: "LandingPage", src: "./Portfolio/LandingPage3.png" },
+	{ type: "Personal", project: "LandingPage", src: "./Portfolio/LandingPage4.png" },
+	{ type: "Personal", project: "LandingPage", src: "./Portfolio/LandingPage5.png" },
 ];
+
+// export const freelanceProjectCount = () => {
+// 	const allFreelanceProjectNames = new Set();
+// 	for (let index = 0; index < mediaItems.length; index++) {
+// 		if (mediaItems[index].type === "Freelance") {
+// 			allFreelanceProjectNames.add(mediaItems[index].project);
+// 		}
+// 	}
+// 	return allFreelanceProjectNames.size;
+// };
+
+export const freelanceProjectCount = new Set(
+	mediaItems.filter((item) => item.type === "Freelance").map((item) => item.project)
+).size;

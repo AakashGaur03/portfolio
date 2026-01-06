@@ -58,6 +58,7 @@ const PortfolioMedia = () => {
 		};
 		window.addEventListener("keydown", handleKey);
 		return () => window.removeEventListener("keydown", handleKey);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selectedProject]);
 
 	// Drag / Swipe handlers
@@ -91,7 +92,9 @@ const PortfolioMedia = () => {
 		<div className="p-4">
 			{Object.entries(groupedProjects).map(([type, projects]) => (
 				<div key={type} className="mb-6">
-					<h2 className="text-xl font-semibold text-white mb-3">{type} Projects</h2>
+					<h2 className="text-xl font-semibold text-white mb-3">
+						{type} Projects ({Object.keys(projects).length})
+					</h2>
 					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 						{Object.entries(projects).map(([name, { images, link }], index) => (
 							<div key={index} className="relative flex flex-col items-center">

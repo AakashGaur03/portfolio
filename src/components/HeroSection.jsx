@@ -1,8 +1,10 @@
 import { PiSuitcaseBold } from "react-icons/pi";
 import { TfiLocationPin } from "react-icons/tfi";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { workHistory } from "../data/workHistory";
 
 const HeroSection = () => {
+	const currentRole = workHistory.length > 0 ? workHistory[0].role : "SOFTWARE DEVELOPER";
 	return (
 		<div>
 			<img src="./Images/desktop-wallpaper-portfolio.jpg" className="w-full object-cover" alt="" />
@@ -14,7 +16,7 @@ const HeroSection = () => {
 					<div className="flex mt-3 flex-wrap gap-x-16">
 						<div className="flex items-center">
 							<PiSuitcaseBold fill="#47e5c3" className="me-2" />
-							<p className="font-light">SOFTWARE DEVELOPER</p>
+							<p className="font-light">{currentRole}</p>
 						</div>
 
 						<div className="flex items-center">

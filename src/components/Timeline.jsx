@@ -32,7 +32,7 @@ const timelineData = [
 		eduIndex: "3",
 		degree: "M.Tech - Computer Science",
 		institution: "SPGOI Sat Priya Group of Institutions (MDU)",
-		duration: "2024 - 2026(PURSUING)",
+		duration: "2024 - 2026 (PURSUING)",
 	},
 	{
 		type: "work",

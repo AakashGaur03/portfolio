@@ -26,8 +26,6 @@ const Contact = () => {
 		// Trim values to prevent leading/trailing spaces
 		const trimmedName = formData.name.trim();
 		const trimmedEmail = formData.email.trim();
-		const trimmedPhone = formData.phone.trim();
-		const trimmedDescription = formData.description.trim();
 
 		if (!trimmedName) newErrors.name = "Name is required";
 
@@ -146,7 +144,7 @@ const Contact = () => {
 
 					<button
 						type="submit"
-						className="w-full bg-[#47e5c3] text-black font-semibold py-3 rounded-lg hover:bg-[#3ac3a5] transition duration-300"
+						className="w-full bg-[#47e5c3] text-black font-semibold py-3 rounded-lg hover:bg-[#3ac3a5] transition duration-300 cursor-pointer"
 						disabled={loading}
 					>
 						{loading ? "Sending..." : "Submit"}
